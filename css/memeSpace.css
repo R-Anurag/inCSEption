@@ -1,0 +1,486 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: "Gelasio", serif;
+    font-optical-sizing: auto;
+    color: #fff;
+}
+
+canvas {
+    display: block;
+    vertical-align: middle;
+}
+
+/* tsParticles Styling */
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzgtMDkta255OWZoM2IuanBn.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+/* Leaderboard Styles */
+.leaderboard-container {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 30%;
+    height: 60%;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    z-index: 10;
+}
+
+.leaderboard-header {
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: flex-start;
+    /* Align items to the left */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.leaderboard-header h4 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.season-badge {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+    padding: 0.3rem 0.8rem;
+    border-radius: 25px;
+    font-size: 0.7rem;
+    text-transform: capitalize;
+}
+
+.leaderboard-content {
+    overflow-y: auto;
+}
+
+.leaderboard-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.leaderboard-content th,
+.leaderboard-content td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.leaderboard-content th {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.leaderboard-content tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.glowing-circle {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+.first-place {
+    background: gold;
+    box-shadow: 0 0 10px gold;
+}
+
+.second-place {
+    background: silver;
+    box-shadow: 0 0 10px silver;
+}
+
+.third-place {
+    background: #cd7f32;
+    box-shadow: 0 0 10px #cd7f32;
+}
+
+
+/* Heading Text Styling */
+@font-face {
+    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
+    font-family: "Meta";
+    font-style: normal;
+    font-weight: normal;
+}
+
+.container main {
+    transition: all 0.5s;
+    -webkit-text-stroke: 4px #d6f4f4;
+    font-variation-settings: "wght" 900, "ital" 1;
+    font-size: 3rem;
+    /* Adjust size as needed */
+    text-align: center;
+    color: transparent;
+    font-family: "Meta", sans-serif;
+    text-shadow: 5px 5px 0px #07bccc, 10px 10px 0px #e601c0,
+        15px 15px 0px #e9019a, 20px 20px 0px #f40468,
+        30px 30px 5px #482896;
+    /* Closer shadows */
+    margin: 20px 0;
+    /* Optional spacing */
+}
+
+.container main.dynamic {
+    font-variation-settings: "wght" 100, "ital" 0;
+    /* Change weight and italic dynamically */
+    text-shadow: none;
+    /* Remove shadows dynamically */
+}
+
+
+/* Carousel Styling */
+.container {
+    position: relative;
+    z-index: 1;
+    /* Ensure it appears above tsParticles */
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.carousel {
+    position: absolute;
+    padding-top: 67px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.carousel__wrapper {
+    display: flex;
+    justify-content: center;
+    height: 61.2vh;
+    perspective: 100px;
+}
+
+.item {
+    position: absolute;
+    max-width: 418px;
+    height: 100%;
+    opacity: 0;
+    animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.item img {
+    max-width: 100%;
+    object-fit: cover;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Updated Instagram Section */
+.instagram {
+    max-width: 420px;
+    width: 100%;
+    margin: 20px auto;
+    background: rgba(34, 34, 34, 0.4);
+    /* Translucent effect */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Keeps images inside the box */
+    z-index: 2;
+    position: relative;
+    /* Ensures proper layering */
+}
+
+.instagram__header {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.instagram__header figure {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the middle */
+    gap: 10px;
+    /* Add space between the image and caption */
+}
+
+.instagram__header img {
+    border-radius: 50%;
+    /* width: 42px;
+            height: 42px;
+            margin-right: 10px; */
+    object-fit: cover;
+}
+
+.instagram__header figcaption {
+    margin: 0;
+}
+
+.instagram__media {
+    position: relative;
+    height: 300px;
+    /* Fixed height */
+    overflow: hidden;
+    /* Prevent images from spilling out */
+}
+
+.img-carousel {
+    display: flex;
+    /* Align images horizontally in a row */
+    transition: transform 0.5s ease-in-out;
+    /* Smooth swipe animation */
+    width: 100%;
+    /* Ensure it matches the container width */
+}
+
+.img-carousel img {
+    flex: 0 0 100%;
+    /* Each image takes up 100% of the carousel width */
+    width: 100%;
+    /* Ensure images stretch fully within their container */
+    height: auto;
+    /* Maintain image aspect ratio */
+    display: block;
+    /* Prevent inline spacing issues */
+}
+
+
+/* Instagram Buttons */
+.instagram__buttons {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.instagram__icon {
+    width: 24px;
+    height: 24px;
+}
+
+.instagram__icon path {
+    stroke: #fff;
+    /* Sets the desired stroke color */
+}
+
+
+
+/* Right Section Container */
+.right-container {
+    position: absolute;
+    top: 0;
+    /* Reset top position */
+    right: 0;
+    width: 30%;
+    /* height: 150px; */
+    overflow: hidden;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 10;
+    overflow-y: hidden;
+}
+
+
+/* Core Container Styles */
+.toggle-container {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background: rgba(34, 34, 34, 0.4); */
+    /* Semi-translucent background */
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+    /* border-radius: 75px; */
+    gap: 10px;
+    /* Adjust gap for more symmetric spacing */
+    position: relative;
+    padding: 1rem;
+}
+
+/* Text Styling */
+.toggle-text {
+    font-size: 1rem;
+    opacity: 0.4;
+    /* Inactive by default */
+    transition: opacity 0.3s ease, color 0.3s ease;
+    flex: 1;
+    /* Allow text to take equal space on both sides */
+    text-align: center;
+    /* Center-align the text */
+}
+
+.active-text {
+    opacity: 1;
+    color: #b1fefe;
+    font-size: 1.1rem;
+}
+
+/* Image Styling */
+.toggle-image {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+
+.typewriter-container h1 {
+    font-size: 4vmin;
+    color: #8bf;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    margin: 3rem 0 1rem 2rem;
+}
+
+/* Blinking Cursor */
+.typewriter::after {
+    content: "";
+    border-right: 2px solid #8bf;
+    animation: blink 0.5s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* Image Upload */
+:root {
+    --progress-bar-height: 15px;
+    --progress-bar-background: #e0e0e0;
+    --progress-bar-color: linear-gradient(to right, #f8b195, #f67280, #c06c84);
+}
+
+.upload-container {
+    /* Avoid conflicts with your existing "container" class */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    /* Adjust as needed */
+    height: 100%;
+    /* Adjust as needed */
+    padding: 3rem;
+}
+
+.upload-btn {
+    font-size: 20px;
+    color: #ffffff;
+    /* Text color */
+    background: rgba(34, 34, 34, 0.4);
+    /* Translucent effect */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 15px 30px;
+    /* Smooth rounded edges */
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+    /* Smooth hover and focus effects */
+    font-family: 'Lato', sans-serif;
+}
+
+.upload-btn:hover {
+    background: #004d99;
+    /* Even darker shade on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    /* Enhanced shadow on hover */
+}
+
+.upload-btn:active {
+    background: #003366;
+    /* Very dark blue for active state */
+    transform: translateY(0);
+    /* Reset lift effect on click */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    /* Reduced shadow for active state */
+}
+
+
+
+
+
+.file-input {
+    display: none;
+}
+
+.upload-error {
+    color: #cfcfcf;
+    margin-top: 10px;
+    display: none;
+}
+
+.upload-progress {
+    width: 400px;
+    display: none;
+    position: relative;
+    margin-top: 20px;
+}
+
+.upload-progress-bar {
+    width: 0;
+    height: var(--progress-bar-height);
+    background: var(--progress-bar-color);
+    border-radius: 10px;
+}
+
+.upload-progress-bar-background {
+    width: 80%;
+    height: var(--progress-bar-height);
+    background-color: var(--progress-bar-background);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.upload-jumping-image {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -50px;
+    left: 0;
+    display: none;
+}
+
+.upload-jumping-image img {
+    width: 100%;
+    height: auto;
+}
+
+.upload-completion-image {
+    width: 70px;
+    height: 70px;
+    display: none;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
