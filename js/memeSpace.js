@@ -162,13 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
        Carousel Logic
     =================================== */
     const images = [
-        "https://assets.codepen.io/108082/jake-and-fin-1.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-2.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-3.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-4.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-5.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-6.jpg",
-        "https://assets.codepen.io/108082/jake-and-fin-7.jpg"
+        "assets/images/aCM.png",
+        "assets/images/leoM.png",
+        "assets/images/jimM.png"
     ];
 
     const carousel = document.querySelector(".img-carousel");
