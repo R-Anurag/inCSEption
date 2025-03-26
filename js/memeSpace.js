@@ -386,20 +386,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Toggle button functionality
     toggleImage.addEventListener("click", function () {
-    currentIndex = 0; // Reset index
-    if (showingLeft) {
-        toggleImage.src = "assets/images/spdmRight.png";
-        leftText.classList.remove("active-text");
-        rightText.classList.add("active-text");
-        listenForMemes("participants"); // Fetch participant memes
-    } else {
-        toggleImage.src = "assets/images/spdmLeft.png";
-        rightText.classList.remove("active-text");
-        leftText.classList.add("active-text");
-        listenForMemes("official"); // Fetch official memes
-    }
-    showingLeft = !showingLeft;
-});
+        currentIndex = 0; // Reset index
+        if (showingLeft) {
+            toggleImage.src = "assets/images/spdmRight.png";
+            leftText.classList.remove("active-text");
+            rightText.classList.add("active-text");
+            listenForMemes("participants"); // Fetch participant memes
+            setupLikesListener("participants"); // Real-time sync for participants
+        } else {
+            toggleImage.src = "assets/images/spdmLeft.png";
+            rightText.classList.remove("active-text");
+            leftText.classList.add("active-text");
+            listenForMemes("official"); // Fetch official memes
+            setupLikesListener("official"); // Real-time sync for official memes
+        }
+        showingLeft = !showingLeft; // Toggle state
+    });
 
 
 
@@ -675,137 +677,166 @@ function resetUpload() {
     /* ===================================
        Liking memes Logic
     =================================== */
-    document.querySelectorAll(".instagram__icon--heart").forEach((icon) => {
-        icon.addEventListener("click", () => {
-            const memeId = icon.getAttribute("data-meme-id"); // Extract meme ID
-            const teamCode = localStorage.getItem("teamCode"); // Retrieve cached teamCode
+    const heartIcon = document.querySelector(".instagram__icon--heart");
+    heartIcon.addEventListener("click", () => {
+        const parent = heartIcon.parentElement; // Container for positioning
 
-            if (!teamCode) {
-                console.error("No teamCode found in localStorage! Please reload the page and validate your teamCode.");
-                return; // Exit if teamCode is not available
-            }
+        for (let i = 0; i < 6; i++) {
+            // Create a new SVG heart
+            const popHeart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            popHeart.setAttribute("viewBox", "0 0 24 24");
+            popHeart.setAttribute("class", "heart-pop");
 
-            handleLike(memeId, teamCode); // Trigger the like functionality
-        });
+            // Create a path using the provided `d` attribute
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute(
+                "d",
+                "M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
+            );
+            path.setAttribute("fill", "#00FF9D"); // Red color for hearts
+
+            // Append the path to the SVG
+            popHeart.appendChild(path);
+
+            // Set random position and direction
+            popHeart.style.position = "absolute";
+            popHeart.style.left = "50%";
+            popHeart.style.top = "50%";
+            popHeart.style.transform = `translate(-50%, -50%) scale(0)`;
+
+            // Append the heart to the parent container
+            parent.appendChild(popHeart);
+
+            // Animate the heart
+            setTimeout(() => {
+                popHeart.style.transform = `translate(-50%, -50%) scale(2.5)`;
+                popHeart.style.opacity = "0";
+            }, 100);
+
+            // Remove the heart after animation completes
+            setTimeout(() => {
+                popHeart.remove();
+            }, 900); // Match animation duration
+        }
     });
 
     function handleLike(memeId, teamCode) {
-    console.log("memeId:", memeId);
-    console.log("teamCode:", teamCode);
+        console.log("memeId:", memeId);
+        console.log("teamCode:", teamCode);
 
-    if (!memeId || !teamCode) {
-        console.error("Error: Missing memeId or teamCode");
-        return;
-    }
-
-    const memesCollection = collection(db, "memes");
-    const memeQuery = query(memesCollection, where("memeID", "==", memeId));
-
-    getDocs(memeQuery).then((querySnapshot) => {
-        if (!querySnapshot.empty) {
-            const docSnapshot = querySnapshot.docs[0];
-            const memeDocRef = docSnapshot.ref;
-
-            console.log("Document found:", docSnapshot.data());
-
-            const likedBy = docSnapshot.data().likedBy || [];
-            if (!likedBy.includes(teamCode)) {
-                // Optimistic UI Update
-                const likeButton = document.querySelector(".instagram__icon--heart");
-                const likesSpan = document.querySelector(".likes-count");
-                const visibleImage = carousel.children[currentIndex];
-
-                if (likesSpan) {
-                    likesSpan.textContent = parseInt(likesSpan.textContent, 10) + 1; // Increment likes count
-                }
-                if (visibleImage) {
-                    visibleImage.dataset.likes = parseInt(visibleImage.dataset.likes, 10) + 1; // Update dataset
-                    const currentLikedBy = visibleImage.dataset.likedBy
-                        ? visibleImage.dataset.likedBy.split(",")
-                        : [];
-                    currentLikedBy.push(teamCode); // Add current user to likedBy
-                    visibleImage.dataset.likedBy = currentLikedBy.join(","); // Update dataset
-                }
-                if (likeButton) {
-                    likeButton.classList.add("liked"); // Turn the heart red
-                }
-
-                // Update Firestore
-                updateDoc(memeDocRef, {
-                    likedBy: arrayUnion(teamCode),
-                    likesCount: increment(1),
-                }).then(() => {
-                    console.log(`Successfully liked meme ${memeId}`);
-                });
-            } else {
-                console.log(`TeamCode ${teamCode} has already liked meme ${memeId}.`);
-            }
-        } else {
-            console.error(`No document found for memeID ${memeId}.`);
+        if (!memeId || !teamCode) {
+            console.error("Error: Missing memeId or teamCode");
+            return;
         }
-    }).catch((error) => {
-        console.error(`Error querying memes collection: ${error}`);
-    });
-}
+
+        const memesCollection = collection(db, "memes");
+        const memeQuery = query(memesCollection, where("memeID", "==", memeId));
+
+        getDocs(memeQuery).then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                const docSnapshot = querySnapshot.docs[0];
+                const memeDocRef = docSnapshot.ref;
+
+                console.log("Document found:", docSnapshot.data());
+
+                const likedBy = docSnapshot.data().likedBy || [];
+                if (!likedBy.includes(teamCode)) {
+                    // Optimistic UI Update
+                    const likeButton = document.querySelector(".instagram__icon--heart");
+                    const likesSpan = document.querySelector(".likes-count");
+                    const visibleImage = carousel.children[currentIndex];
+
+                    if (likesSpan) {
+                        likesSpan.textContent = parseInt(likesSpan.textContent, 10) + 1; // Increment likes count
+                    }
+                    if (visibleImage) {
+                        visibleImage.dataset.likes = parseInt(visibleImage.dataset.likes, 10) + 1; // Update dataset
+                        const currentLikedBy = visibleImage.dataset.likedBy
+                            ? visibleImage.dataset.likedBy.split(",")
+                            : [];
+                        currentLikedBy.push(teamCode); // Add current user to likedBy
+                        visibleImage.dataset.likedBy = currentLikedBy.join(","); // Update dataset
+                    }
+                    if (likeButton) {
+                        likeButton.classList.add("liked"); // Turn the heart red
+                    }
+
+                    // Update Firestore
+                    updateDoc(memeDocRef, {
+                        likedBy: arrayUnion(teamCode),
+                        likesCount: increment(1),
+                    }).then(() => {
+                        console.log(`Successfully liked meme ${memeId}`);
+                    });
+                } else {
+                    console.log(`TeamCode ${teamCode} has already liked meme ${memeId}.`);
+                }
+            } else {
+                console.error(`No document found for memeID ${memeId}.`);
+            }
+        }).catch((error) => {
+            console.error(`Error querying memes collection: ${error}`);
+        });
+    }
 
 
     function setupLikesListener(type = "all") {
-    const memesCollection = collection(db, "memes");
-    const currentTeamCode = localStorage.getItem("teamCode");
-    let memesQuery;
+        const memesCollection = collection(db, "memes");
+        const currentTeamCode = localStorage.getItem("teamCode");
+        let memesQuery;
 
-    // Adjust query based on the toggle state
-    if (type === "official") {
-        memesQuery = query(
-            memesCollection,
-            where("isApproved", "==", true),
-            where("uploadedBy", "==", "270325")
-        );
-    } else if (type === "participants") {
-        memesQuery = query(
-            memesCollection,
-            where("isApproved", "==", true),
-            where("uploadedBy", "!=", "270325")
-        );
-    } else {
-        memesQuery = query(memesCollection, where("isApproved", "==", true));
-    }
+        // Adjust query based on the toggle state
+        if (type === "official") {
+            memesQuery = query(
+                memesCollection,
+                where("isApproved", "==", true),
+                where("uploadedBy", "==", "270325")
+            );
+        } else if (type === "participants") {
+            memesQuery = query(
+                memesCollection,
+                where("isApproved", "==", true),
+                where("uploadedBy", "!=", "270325")
+            );
+        } else {
+            memesQuery = query(memesCollection, where("isApproved", "==", true));
+        }
 
-    // Attach the snapshot listener to the relevant memes
-    onSnapshot(memesQuery, (snapshot) => {
-        snapshot.docs.forEach((doc) => {
-            const memeData = doc.data();
-            const memeId = memeData.memeID;
-            const likesCount = memeData.likesCount || 0;
-            const likedBy = memeData.likedBy || [];
+        // Attach the snapshot listener to the relevant memes
+        onSnapshot(memesQuery, (snapshot) => {
+            snapshot.docs.forEach((doc) => {
+                const memeData = doc.data();
+                const memeId = memeData.memeID;
+                const likesCount = memeData.likesCount || 0;
+                const likedBy = memeData.likedBy || [];
 
-            // Update all relevant memes in the carousel
-            Array.from(carousel.children).forEach((image) => {
-                if (image.dataset.memeId === memeId) {
-                    // Update likes count
-                    image.dataset.likes = likesCount;
+                // Update all relevant memes in the carousel
+                Array.from(carousel.children).forEach((image) => {
+                    if (image.dataset.memeId === memeId) {
+                        // Update likes count
+                        image.dataset.likes = likesCount;
 
-                    // Update the heart icon
-                    const likeButton = document.querySelector(`.instagram__icon--heart[data-meme-id="${memeId}"]`);
-                    if (likeButton) {
-                        if (likedBy.includes(currentTeamCode)) {
-                            likeButton.classList.add("liked");
-                        } else {
-                            likeButton.classList.remove("liked");
+                        // Update the heart icon
+                        const likeButton = document.querySelector(`.instagram__icon--heart[data-meme-id="${memeId}"]`);
+                        if (likeButton) {
+                            if (likedBy.includes(currentTeamCode)) {
+                                likeButton.classList.add("liked");
+                            } else {
+                                likeButton.classList.remove("liked");
+                            }
+                        }
+
+                        // If the current meme is visible, update its UI
+                        if (carousel.children[currentIndex] === image) {
+                            const likesSpan = document.querySelector(".likes-count");
+                            if (likesSpan) {
+                                likesSpan.textContent = likesCount;
+                            }
                         }
                     }
-
-                    // If the current meme is visible, update its UI
-                    if (carousel.children[currentIndex] === image) {
-                        const likesSpan = document.querySelector(".likes-count");
-                        if (likesSpan) {
-                            likesSpan.textContent = likesCount;
-                        }
-                    }
-                }
+                });
             });
         });
-    });
-}
+    }
 
 });

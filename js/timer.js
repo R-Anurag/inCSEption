@@ -21,11 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function agDetectmob() {
-                // Set countdown time (e.g., 4.1 hours in seconds)
-                var agDiff = 60 * 5;
+                // Get current date and time
+                const now = new Date();
 
-                // Initialize FlipClock and attach the instance to a global variable
-                window.flipClockInstance = $('.js-flipclock').FlipClock(agDiff, {
+                // Set start time (8:30 AM) and end time (2:30 PM)
+                const startTime = new Date();
+                startTime.setHours(8, 30, 0, 0); // 8:30 AM
+                const endTime = new Date();
+                endTime.setHours(14, 30, 0, 0); // 2:30 PM
+
+                // Calculate total and remaining time in seconds
+                const totalTimeInSeconds = Math.floor((endTime - startTime) / 1000);
+                const remainingTimeInSeconds = Math.floor((endTime - now) / 1000);
+
+                // Ensure FlipClock reflects remaining time
+                window.flipClockInstance = $('.js-flipclock').FlipClock(remainingTimeInSeconds, {
                     clockFace: 'HourlyCounter',
                     countdown: true,
                 });
@@ -36,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     addLabels();
                 }, 500); // Delay to ensure FlipClock renders
 
+                // Return true
                 return true;
             }
 

@@ -16,11 +16,18 @@ $(document).ready(function () {
  * @param {object} flipClock - The initialized FlipClock instance
  */
 function startAnimations(flipClock) {
-    const totalTimeInSeconds = 60 * 5; // Total countdown time (4.1 minutes in seconds)
+    const startTime = new Date();
+    startTime.setHours(8, 30, 0, 0); // 8:30 AM
+    const endTime = new Date();
+    endTime.setHours(14, 30, 0, 0); // 2:30 PM
+
+    // Calculate total countdown duration in seconds
+    const totalTimeInSeconds = Math.floor((endTime - startTime) / 1000);
+
+    // Create interval to synchronize animations dynamically
     const interval = setInterval(() => {
         const remainingTime = flipClock.getTime().time; // Get remaining time in seconds
-        console.log(`Remaining Time: ${remainingTime}`); // Debugging log
-        updateAnimations(remainingTime); // Sync animations dynamically
+        updateAnimations(remainingTime, totalTimeInSeconds); // Pass total time for percentage calculation
 
         // Stop interval if countdown has ended
         if (remainingTime <= 0) {
@@ -34,8 +41,7 @@ function startAnimations(flipClock) {
  * Update animations based on remaining time.
  * @param {number} remainingTime - Remaining time in seconds
  */
-function updateAnimations(remainingTime) {
-    const totalTimeInSeconds = 60 * 5; // Total countdown time
+function updateAnimations(remainingTime, totalTimeInSeconds) {
     const progressPercentage = 100 - (remainingTime / totalTimeInSeconds) * 100;
 
     // Update progress bar position
@@ -44,8 +50,6 @@ function updateAnimations(remainingTime) {
     // Update death group position
     const deathPosition = (remainingTime / totalTimeInSeconds) * 581; // Total movement range
     $('#death-group').css('transform', `translateX(${581 - deathPosition}px)`);
-
-    console.log('Progress Percentage:', progressPercentage, 'Arm Speed:', armSpeed);
 }
 
 
