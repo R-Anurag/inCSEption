@@ -1,0 +1,649 @@
+/* Global Reset */
+body {
+    margin: 0;
+    /* font-family: "Montserrat", sans-serif; */
+    /* font-family: "Caladea", serif; */
+    font-family: "Gelasio", serif;
+    /* font-family: "Alegreya", serif; */
+    font-optical-sizing: auto;
+    /* font-weight: 400; */
+    /* Regular variant */
+    color: #fff;
+}
+
+canvas {
+    display: block;
+    vertical-align: middle;
+}
+
+/* tsParticles Styling */
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzgtMDkta255OWZoM2IuanBn.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: 50% 50%; */
+    z-index: 0;
+}
+
+.navigate-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    /* Default color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 5;
+}
+
+.navigate-right:hover {
+    color: #00FF9D;
+    /* Hover effect */
+}
+
+a:hover i {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Logos on the sides, header in the center */
+    padding: 30px;
+    /* background-color: #000; */
+    /* Optional background for styling */
+    width: 100%;
+    /* Full-width container */
+    position: relative;
+    z-index: 2;
+    /* Ensure it appears above particles */
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Space between logos */
+}
+
+.club-logo {
+    max-width: 80px;
+    /* Adjust size as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.club-logo:hover {
+    transform: scale(1.1);
+    /* Slight zoom on hover */
+}
+
+
+.department-header main {
+    font-family: "Orbitron", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    animation: lights 5s 750ms linear infinite;
+    color: #FFF;
+    /* Keep 'inCSEption' text white */
+}
+
+.department-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Space between the text elements */
+    position: relative;
+    z-index: 1;
+    /* Ensure it layers correctly */
+}
+
+.department-header h1 {
+    font-family: "Orbitron", sans-serif;
+    /* Match the aesthetic */
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    /* White color for labels */
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.redirect-button {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 50;
+    background-color: #4CAF50;
+    /* Green background */
+    color: white;
+    /* White text */
+    border: none;
+    /* Remove border */
+    padding: 15px 30px;
+    /* Button size */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer on hover */
+    transition: background-color 0.3s ease;
+}
+
+.redirect-button:hover {
+    background-color: #45a049;
+    /* Darker green on hover */
+}
+
+
+@keyframes lights {
+    0% {
+        color: hsl(230, 40%, 80%);
+        text-shadow:
+            0 0 1em hsla(320, 100%, 50%, 0.2),
+            0 0 0.125em hsla(320, 100%, 60%, 0.3),
+            -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+            1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+
+    30% {
+        color: hsl(230, 80%, 90%);
+        text-shadow:
+            0 0 1em hsla(320, 100%, 50%, 0.5),
+            0 0 0.125em hsla(320, 100%, 60%, 0.5),
+            -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+            0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+
+    40% {
+        color: hsl(230, 100%, 95%);
+        text-shadow:
+            0 0 1em hsla(320, 100%, 50%, 0.5),
+            0 0 0.125em hsla(320, 100%, 90%, 0.5),
+            -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+            0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+    }
+
+    70% {
+        color: hsl(230, 80%, 90%);
+        text-shadow:
+            0 0 1em hsla(320, 100%, 50%, 0.5),
+            0 0 0.125em hsla(320, 100%, 60%, 0.5),
+            0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+            -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+
+    100% {
+        color: hsl(230, 40%, 80%);
+        text-shadow:
+            0 0 1em hsla(320, 100%, 50%, 0.2),
+            0 0 0.125em hsla(320, 100%, 60%, 0.3),
+            1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+            -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+
+}
+
+.outerContainer main {
+    /* font-family: "Exo 2", sans-serif; */
+    font-family: "Orbitron", sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    animation: lights 5s 750ms linear infinite;
+    padding: 1rem;
+}
+
+
+.outerContainer {
+    position: absolute;
+    z-index: 1;
+    /* Ensure it appears above tsParticles */
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+}
+
+/* Label Styling */
+.label,
+.sub-headline {
+    padding: 1rem;
+    /* Space between digits and label */
+    font-family: 'Orbitron', sans-serif;
+    /* Futuristic font */
+    color: #ffffff;
+    /* White color for labels */
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Subtle glow */
+}
+
+
+.sub-headline {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+
+/* countdown */
+.ag-format-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.js-ag-show.flip-clock-wrapper ul li a div div.inn {
+    color: #ccc612;
+    text-shadow: 0 1px 2px #1508f0;
+    background-color: #252ed3;
+}
+
+.ag-flipclock-block {
+    padding: 20px 0 100px 0;
+}
+
+/* FlipClock Wrapper */
+.flip-clock-wrapper {
+    display: flex;
+    /* Arrange the groups (Hours, Minutes, Seconds) horizontally */
+    justify-content: center;
+    align-items: flex-end;
+    /* Align labels and digits properly */
+    gap: 20px;
+    /* Space between groups */
+}
+
+/* Digit container (UL) styling */
+.flip-clock-wrapper ul li {
+    /* Dark gradient for contrast */
+    border-radius: 8px;
+    border: 2px solid rgb(30, 71, 159);
+    box-shadow: 0 0 10px rgba(0, 225, 255, 0.8), 0 0 15px #003cff80;
+    /* Outer glow */
+}
+
+/* Style for the flipping digit faces (UP and DOWN sections) */
+.flip-clock-wrapper ul li .up .inn,
+.flip-clock-wrapper ul li .down .inn {
+    background: linear-gradient(135deg, #141E30, #243B55);
+    /* Inner gradient for depth */
+    color: #00FF9D;
+    /* Neon green text */
+    font-family: 'Orbitron', sans-serif;
+    /* Futuristic font */
+    font-size: 3.5rem;
+    /* Size of digits */
+    border-radius: 8px;
+    /* Match digit container's corners */
+    text-align: center;
+    /* Center the digits */
+    text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgba(0, 85, 255, 0.6);
+    /* Glowing effect on text */
+
+    /* box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.8), inset 0 0 20px rgba(0, 255, 204, 0.5); */
+    /* Inner glow */
+}
+
+/* Colon Divider Styling */
+.flip-clock-divider {
+    top: -3rem;
+}
+
+.flip-clock-dot {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0,
+            225,
+            255,
+            0.8),
+        0 0 15px #003cff80;
+    margin: 3px;
+}
+
+/* Group Container */
+.group-container {
+    display: flex;
+    flex-direction: column;
+    /* Stack the digit row and label vertically */
+    align-items: center;
+    /* Center digits and label */
+    margin: 0 0px;
+    /* Space between individual groups */
+}
+
+/* Digit Row (Side-by-Side Digits) */
+.digit-row {
+    display: flex;
+    /* Place digits next to each other */
+    gap: 5px;
+    /* Space between the two digits */
+    justify-content: center;
+    align-items: center;
+    /* Align digits with colons */
+    position: relative;
+    /* Ensure proper alignment with colons */
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .flip-clock-wrapper {
+        gap: 10px;
+        /* Reduce space between groups */
+    }
+
+    .digit-row ul {
+        width: 30px;
+        /* Adjust digit box size for smaller screens */
+    }
+
+    .label {
+        font-size: 1rem;
+        /* Reduce label size */
+    }
+}
+
+#deadline {
+    width: 581px;
+    max-width: 100%;
+    height: 158px;
+    position: absolute;
+    bottom: 10%;
+    /* Align at the bottom of the screen */
+    left: 50%;
+    /* Center horizontally */
+    z-index: 1;
+    -webkit-transform: translate(-50%, 0);
+    /* Center horizontally, stay at the bottom vertically */
+    transform: translate(-50%, 0);
+}
+
+#deadline svg {
+    width: 100%;
+}
+
+#progress-trail {
+    position: relative;
+    width: 100%;
+    /* Full width container */
+    height: 10px;
+    /* Height of the progress bar */
+    background-color: #ccc;
+    /* Light gray background for contrast */
+    overflow: hidden;
+    /* Ensure no overflow issues */
+}
+
+#progress-time-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* Match container height */
+    width: 100%;
+    /* Match container width */
+    background-color: #BE002A;
+    /* Red progress bar */
+    transition: x 0.5s linear;
+    /* Use `x` for smooth updates */
+}
+
+
+#death-group {
+    position: relative;
+    transform: translateX(0);
+    /* Initial position */
+    transition: transform 1s linear;
+    /* Smooth movement */
+}
+
+#death-arm {
+    animation: move-arm 3s ease infinite;
+    /* transform-origin: left center; */
+    transform-origin: -60px 74px;
+}
+
+#death-tool {
+    animation: move-tool 3s ease infinite;
+    transform-origin: -48px center;
+}
+
+/* Designer */
+#designer-arm-grop {
+    animation: write 1.5s ease infinite;
+    /* Default speed */
+    transform: translate(0, 0) rotate(0deg) scale(1, 1);
+    transform-origin: 90% top;
+}
+
+#red-flame {
+    opacity: 0;
+    animation: show-flames 20s ease infinite, red-flame 120ms ease infinite;
+    transform-origin: center bottom;
+}
+
+#yellow-flame {
+    opacity: 0;
+    animation: show-flames 20s ease infinite, yellow-flame 120ms ease infinite;
+    transform-origin: center bottom;
+}
+
+#white-flame {
+    opacity: 0;
+    animation: show-flames 20s ease infinite, red-flame 100ms ease infinite;
+    transform-origin: center bottom;
+}
+
+@keyframes show-flames {
+    0% {
+        opacity: 0;
+    }
+
+    74% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes red-flame {
+    0% {
+        transform: translateY(-30px) scale(1, 1);
+    }
+
+    25% {
+        transform: translateY(-30px) scale(1.1, 1.1);
+    }
+
+    75% {
+        transform: translateY(-30px) scale(0.8, 0.7);
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1, 1);
+    }
+}
+
+@keyframes yellow-flame {
+    0% {
+        transform: translateY(-30px) scale(0.8, 0.7);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.1, 1.2);
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1, 1);
+    }
+}
+
+
+.deadline-days {
+    color: #00FF9D;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    font-family: "Orbitron", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+@keyframes progress-fill {
+    0% {
+        x: -100%;
+    }
+
+    100% {
+        x: -3%;
+    }
+}
+
+@keyframes walk {
+    0% {
+        transform: translateX(0);
+    }
+
+    6% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(100px);
+    }
+
+    15% {
+        transform: translateX(140px);
+    }
+
+    25% {
+        transform: translateX(170px);
+    }
+
+    35% {
+        transform: translateX(220px);
+    }
+
+    45% {
+        transform: translateX(280px);
+    }
+
+    55% {
+        transform: translateX(340px);
+    }
+
+    65% {
+        transform: translateX(370px);
+    }
+
+    75% {
+        transform: translateX(430px);
+    }
+
+    85% {
+        transform: translateX(460px);
+    }
+
+    100% {
+        transform: translateX(520px);
+    }
+}
+
+@keyframes move-arm {
+    0% {
+        transform: rotate(0);
+    }
+
+    5% {
+        transform: rotate(0);
+    }
+
+    9% {
+        transform: rotate(40deg);
+    }
+
+    80% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes move-tool {
+    0% {
+        transform: rotate(0);
+    }
+
+    5% {
+        transform: rotate(0);
+    }
+
+    9% {
+        transform: rotate(50deg);
+    }
+
+    80% {
+        transform: rotate(0);
+    }
+}
+
+/* Design animations */
+
+@keyframes write {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1, 1);
+    }
+
+    16% {
+        transform: translate(0px, 0px) rotate(5deg) scale(0.8, 1);
+    }
+
+    32% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1, 1);
+    }
+
+    48% {
+        transform: translate(0px, 0px) rotate(6deg) scale(0.8, 1);
+    }
+
+    65% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1, 1);
+    }
+
+    83% {
+        transform: translate(0px, 0px) rotate(4deg) scale(0.8, 1);
+    }
+}
+
+@keyframes text-red {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 98%;
+    }
+}

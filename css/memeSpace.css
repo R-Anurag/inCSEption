@@ -25,7 +25,47 @@ canvas {
     z-index: 0;
 }
 
-/* Leaderboard Styles */
+.navigate-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    /* Default color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 5;
+}
+
+.navigate-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    /* Default color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 5;
+}
+
+a:hover {
+    color: #00FF9D;
+    /* Hover effect */
+}
+
+a:hover i {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+/* ===================================
+   Leaderboard Styles
+=================================== */
+
+/* Leaderboard Container */
 .leaderboard-container {
     position: absolute;
     top: 20%;
@@ -35,66 +75,110 @@ canvas {
     color: #fff;
     padding: 1rem;
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow: auto;
+    /* Allow scrolling if needed */
     z-index: 10;
 }
 
+/* Leaderboard Content */
+.leaderboard-content {
+    position: relative;
+    /* Establish positioning context for rows */
+}
+
+/* Leaderboard Header */
 .leaderboard-header {
     display: flex;
     flex-direction: column;
-    /* Stack items vertically */
-    align-items: flex-start;
-    /* Align items to the left */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 1rem;
+    justify-content: flex-start;
     margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle divider */
+    padding-bottom: 1rem;
 }
 
 .leaderboard-header h4 {
+    font-size: 1.5rem;
     margin: 0;
-    margin-bottom: 0.5rem;
+    font-family: "Meta", sans-serif;
+    /* Custom font */
+    color: #fff;
+    /* Bright text for heading */
 }
 
 .season-badge {
+    display: inline-block;
     background: rgba(255, 193, 7, 0.2);
+    /* Subtle yellow background */
     color: #FFC107;
+    /* Bright yellow text */
     padding: 0.3rem 0.8rem;
+    /* Padding */
     border-radius: 25px;
-    font-size: 0.7rem;
+    /* Rounded corners */
+    font-size: 0.8rem;
     text-transform: capitalize;
+    /* Uppercase text */
+    white-space: nowrap;
+    /* Prevent wrapping */
+    width: 40%;
+    margin-top: 5px;
 }
 
-.leaderboard-content {
-    overflow-y: auto;
-}
-
-.leaderboard-content table {
+/* Leaderboard Header Row */
+.leaderboard-header-row {
+    display: flex;
+    /* Horizontal alignment */
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-.leaderboard-content th,
-.leaderboard-content td {
-    text-align: left;
-    padding: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.leaderboard-content th {
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
+    /* Light text */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Divider */
+    box-sizing: border-box;
+    height: 3rem;
+    /* Fixed header height */
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Orbitron", sans-serif;
+    /* Center vertically */
 }
 
-.leaderboard-content tr:nth-child(even) {
+/* Leaderboard Rows */
+.leaderboard-row {
+    display: flex;
+    /* Horizontal alignment */
+    width: 100%;
+    position: absolute;
+    /* Required for dynamic positioning */
+    height: 3rem;
+    padding-left: 0.5rem;
+    align-items: center;
+    box-sizing: border-box;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease;
+    /* Smooth animations */
+}
+
+/* Alternate Row Highlighting */
+.leaderboard-row:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.1);
+    /* Odd rows */
+}
+
+.leaderboard-row:nth-child(even) {
     background: rgba(255, 255, 255, 0.05);
+    /* Even rows */
 }
 
+
+/* Glowing Circles */
 .glowing-circle {
     display: inline-block;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
     text-align: center;
+    /* Center text horizontally */
     line-height: 2rem;
     font-weight: bold;
     color: #fff;
@@ -114,15 +198,6 @@ canvas {
 .third-place {
     background: #cd7f32;
     box-shadow: 0 0 10px #cd7f32;
-}
-
-
-/* Heading Text Styling */
-@font-face {
-    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
-    font-family: "Meta";
-    font-style: normal;
-    font-weight: normal;
 }
 
 .container main {
@@ -160,39 +235,11 @@ canvas {
     height: 100%;
 }
 
-.carousel {
-    position: absolute;
-    padding-top: 67px;
-    width: 100%;
-    pointer-events: none;
-}
-
-.carousel__wrapper {
-    display: flex;
-    justify-content: center;
-    height: 61.2vh;
-    perspective: 100px;
-}
-
-.item {
-    position: absolute;
-    max-width: 418px;
-    height: 100%;
-    opacity: 0;
-    animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-}
-
-.item img {
-    max-width: 100%;
-    object-fit: cover;
-    height: 100%;
-    border-radius: 8px;
-}
-
-/* Updated Instagram Section */
+/* Instagram Section */
+/* Instagram Article Styling */
 .instagram {
     max-width: 420px;
-    width: 100%;
+    width: 60vh;
     margin: 20px auto;
     background: rgba(34, 34, 34, 0.4);
     /* Translucent effect */
@@ -201,12 +248,13 @@ canvas {
     overflow: hidden;
     /* Keeps images inside the box */
     z-index: 2;
-    position: relative;
     /* Ensures proper layering */
+    position: relative;
 }
 
+/* Header Styling */
 .instagram__header {
-    padding: 12px;
+    padding: 12px 12px 0 12px;
     display: flex;
     align-items: center;
 }
@@ -216,55 +264,75 @@ canvas {
     align-items: center;
     /* Align items vertically in the middle */
     gap: 10px;
-    /* Add space between the image and caption */
+    /* Add space between image and caption */
 }
 
 .instagram__header img {
     border-radius: 50%;
-    /* width: 42px;
-            height: 42px;
-            margin-right: 10px; */
     object-fit: cover;
 }
 
-.instagram__header figcaption {
-    margin: 0;
-}
-
+/* Media Section Styling (Carousel Container) */
 .instagram__media {
-    position: relative;
-    height: 300px;
-    /* Fixed height */
+    /* position: relative; */
+    height: 60vh;
+    /* Fixed height for the container */
+    width: 100%;
+    /* Make it responsive */
     overflow: hidden;
-    /* Prevent images from spilling out */
+    /* Prevent overflow of images */
+    background-color: #ffffff;
+    /* Optional background color */
+    /* display: flex;
+    align-items: center;
+    /* Center content vertically */
+    /* justify-content: center;
+    Center content horizontally */
 }
 
+/* Carousel Row */
 .img-carousel {
     display: flex;
-    /* Align images horizontally in a row */
+    /* Align images horizontally */
     transition: transform 0.5s ease-in-out;
-    /* Smooth swipe animation */
-    width: 100%;
-    /* Ensure it matches the container width */
+    /* Smooth transition for swiping */
+    position: relative;
 }
 
+/* Carousel Images */
 .img-carousel img {
-    flex: 0 0 100%;
-    /* Each image takes up 100% of the carousel width */
+    /* flex: 0 0 100%; */
+    /* Each image takes 100% of the container width */
+    /* max-height: 100%; */
     width: 100%;
-    /* Ensure images stretch fully within their container */
-    height: auto;
-    /* Maintain image aspect ratio */
+    height: 100%;
+    /* Scale to fit within the container */
+    object-fit: contain;
+    /* Ensure full image is visible without cropping */
     display: block;
     /* Prevent inline spacing issues */
+    border-radius: 8px;
+    /* Optional rounded corners */
+    background: rgba(255, 252, 252, 0.1);
+    /* Subtle background behind images */
 }
-
 
 /* Instagram Buttons */
 .instagram__buttons {
     padding: 12px;
     display: flex;
     justify-content: space-between;
+}
+
+.instagram__icon--heart {
+    fill: gray;
+    /* Default heart color */
+    transition: fill 0.3s ease;
+}
+
+.instagram__icon--heart.liked {
+    fill: red;
+    /* Highlighted color for liked memes */
 }
 
 .instagram__icon {
