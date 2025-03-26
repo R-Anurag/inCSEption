@@ -120,36 +120,6 @@ a:hover i {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
-.redirect-button {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    z-index: 50;
-    background-color: #4CAF50;
-    /* Green background */
-    color: white;
-    /* White text */
-    border: none;
-    /* Remove border */
-    padding: 15px 30px;
-    /* Button size */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 8px;
-    /* Rounded corners */
-    cursor: pointer;
-    /* Pointer on hover */
-    transition: background-color 0.3s ease;
-}
-
-.redirect-button:hover {
-    background-color: #45a049;
-    /* Darker green on hover */
-}
-
-
 @keyframes lights {
     0% {
         color: hsl(230, 40%, 80%);

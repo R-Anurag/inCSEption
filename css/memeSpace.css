@@ -71,13 +71,27 @@ a:hover i {
     top: 20%;
     left: 0;
     width: 30%;
-    height: 60%;
+    height: calc(100vh - 20%);
+    /* Dynamically adjusts height within viewport */
     color: #fff;
     padding: 1rem;
     box-sizing: border-box;
-    overflow: auto;
-    /* Allow scrolling if needed */
+    overflow-y: scroll;
+    /* Allow vertical scrolling */
+    overflow-x: hidden;
+    /* Hide horizontal scroll */
     z-index: 10;
+
+    /* Hide the scrollbar */
+    -ms-overflow-style: none;
+    /* For Internet Explorer */
+    scrollbar-width: none;
+    /* For Firefox */
+}
+
+.leaderboard-container::-webkit-scrollbar {
+    display: none;
+    /* For WebKit browsers (Chrome, Safari, etc.) */
 }
 
 /* Leaderboard Content */
@@ -275,7 +289,7 @@ a:hover i {
 /* Media Section Styling (Carousel Container) */
 .instagram__media {
     /* position: relative; */
-    height: 60vh;
+    height: 50vh;
     /* Fixed height for the container */
     width: 100%;
     /* Make it responsive */
@@ -324,15 +338,60 @@ a:hover i {
     justify-content: space-between;
 }
 
+.likes-count {
+    font-family: "Orbitron", sans-serif;
+    /* Updated to match the Orbitron aesthetic */
+    font-size: 1.1rem;
+    /* Updated font size */
+    font-weight: 700;
+    /* Bold text */
+    color: #ffffff;
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing text effect */
+    padding: 0.5rem;
+    /* Button padding */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+}
+
 .instagram__icon--heart {
-    fill: gray;
+    cursor: pointer;
+    fill: rgba(128, 128, 128, 0);
     /* Default heart color */
     transition: fill 0.3s ease;
 }
 
 .instagram__icon--heart.liked {
-    fill: red;
+    fill: rgb(255, 0, 81);
     /* Highlighted color for liked memes */
+}
+
+.instagram__icon--heart {
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+    transition: transform 0.3s ease;
+    /* Smooth scaling on hover */
+}
+
+.instagram__icon--heart:hover {
+    transform: scale(1.2);
+    /* Slightly enlarge the heart on hover */
+}
+
+.heart-pop {
+    width: 24px;
+    /* Size of the heart */
+    height: 24px;
+    /* Size of the heart */
+    opacity: 1;
+    /* Start fully visible */
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    /* Smooth animation */
+    pointer-events: none;
+    /* Prevent interference with clicks */
 }
 
 .instagram__icon {
@@ -343,6 +402,12 @@ a:hover i {
 .instagram__icon path {
     stroke: #fff;
     /* Sets the desired stroke color */
+}
+
+.instagram__icon--comment,
+.instagram__icon--message,
+.instagram__icon--saved {
+    display: none;
 }
 
 
@@ -409,11 +474,11 @@ a:hover i {
 
 
 .typewriter-container h1 {
-    font-size: 4vmin;
-    color: #8bf;
-    text-align: left;
-    font-family: 'Lato', sans-serif;
+    font-family: "Orbitron", sans-serif;
+    color: #00FF9D;
+    font-size: 1.2rem;
     font-weight: 700;
+    text-align: left;
     margin: 3rem 0 1rem 2rem;
 }
 
@@ -458,39 +523,59 @@ a:hover i {
 }
 
 .upload-btn {
-    font-size: 20px;
+    font-family: "Orbitron", sans-serif;
+    /* Updated to match the Orbitron aesthetic */
+    font-size: 1.1rem;
+    /* Updated font size */
+    font-weight: 700;
+    /* Bold text */
     color: #ffffff;
-    /* Text color */
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing text effect */
+
     background: rgba(34, 34, 34, 0.4);
     /* Translucent effect */
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    /* Subtle border */
     border-radius: 8px;
+    /* Rounded edges */
     padding: 15px 30px;
-    /* Smooth rounded edges */
+    /* Button padding */
     cursor: pointer;
+    /* Pointer cursor */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     /* Subtle shadow for depth */
     transition: all 0.3s ease-in-out;
     /* Smooth hover and focus effects */
-    font-family: 'Lato', sans-serif;
 }
 
 .upload-btn:hover {
-    background: #004d99;
-    /* Even darker shade on hover */
+    background: rgba(34, 34, 34, 0.4);
+    /* Keep the same background color */
     transform: translateY(-2px);
     /* Slight lift effect on hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     /* Enhanced shadow on hover */
+
+    /* Add a glowing border effect */
+    border: 2px solid rgba(0, 255, 157, 0.9);
+    /* Bright green border on hover */
+    text-shadow: 0 0 15px rgba(0, 255, 157, 0.9);
+    /* Enhance glowing text on hover */
 }
 
 .upload-btn:active {
-    background: #003366;
-    /* Very dark blue for active state */
+    background: rgba(34, 34, 34, 0.4);
+    /* Maintain background color */
     transform: translateY(0);
     /* Reset lift effect on click */
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     /* Reduced shadow for active state */
+    border: 2px solid rgba(0, 255, 157, 0.7);
+    /* Slightly dim glowing border on active */
 }
 
 
