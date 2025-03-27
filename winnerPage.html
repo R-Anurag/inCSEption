@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Winners</title>
+    <link rel="stylesheet" href="css/winners.css">
+</head>
+
+<body>
+    <div id="tsparticles"></div>
+
+    <!-- ✅ Header Added (Now Visible) -->
+    <header class="department-header">
+        <h1>The Supreme Meme Lords Have Risen</h1>
+        <div class="proclamation">
+            Bow down, humble(d) mortals, for the chosen ones now reign supreme.
+            Their memes have conquered all, leaving laughter and awe in their wake.
+            Dare to challenge their throne next time—if you’re brave enough.
+            <br>
+            <strong>All hail the Certified Meme Lords!</strong>
+        </div>
+    </header>
+
+    <div class="perspective-container">
+        <!-- ✅ Dealer Image -->
+        <div class="dealer-image"></div>
+
+        <!-- ✅ Board -->
+        <article class="board">
+            <button class="card" onclick="this.classList.toggle('flipped')">
+                <span class="wrapper">
+                    <span class="content">
+                        <span class="face back"></span>
+                        <span class="face front"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="card" onclick="this.classList.toggle('flipped')">
+                <span class="wrapper">
+                    <span class="content">
+                        <span class="face back"></span>
+                        <span class="face front"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="card" onclick="this.classList.toggle('flipped')">
+                <span class="wrapper">
+                    <span class="content">
+                        <span class="face back"></span>
+                        <span class="face front"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="card" onclick="this.classList.toggle('flipped')">
+                <span class="wrapper">
+                    <span class="content">
+                        <span class="face back"></span>
+                        <span class="face front"></span>
+                    </span>
+                </span>
+            </button>
+        </article>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pathseg@1.2.0/pathseg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.18.11/dist/tsparticles.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/tsParticles.js"></script>
+    <script type="module" src="js/firebaseConfig.js"></script>
+    <script type="module" src="js/winners.js"></script>
+</body>
+
+</html>

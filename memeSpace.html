@@ -33,6 +33,13 @@
         <i class="fas fa-arrow-right"></i>
     </a>
 
+    <!-- Crown button linking to winnerPage.html with tooltip -->
+    <a href="winnerPage.html" class="navigate-crown">
+        <i class="fas fa-crown"></i>
+        <span class="tooltip">Declare Winners</span>
+    </a>
+
+
 
     <!-- tsParticles container -->
     <div id="tsparticles"></div>
@@ -60,7 +67,7 @@
         <article class="instagram">
             <header class="instagram__header">
                 <figure>
-                    <img src="https://assets.codepen.io/108082/jake-dog.png" alt="Jake Dog" width="42" height="42" />
+                    <img src="assets/images/officialAccountLogo.png" alt="Jake Dog" width="42" height="42" />
                     <figcaption>
                         <h4>InCSEption</h4>
                     </figcaption>
@@ -93,11 +100,10 @@
                     </svg>
                 </div>
                 <div class="right">
-                    <!-- Save Icon -->
-                    <svg class="instagram__icon instagram__icon--saved" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path d="M20 21L12 13.44L4 21V3H20V21Z" />
-                    </svg>
+                    <!-- Flag Icon -->
+                    <img id="flag_icon" src="assets/images/unFlagged.png" alt="Flag Meme"
+                        class="instagram__icon instagram__icon--flag" />
+                    <span class="flags-count" id="flags-count-meme_123">0</span>
                 </div>
             </footer>
         </article>
