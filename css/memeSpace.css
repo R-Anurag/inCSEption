@@ -1,0 +1,793 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: "Gelasio", serif;
+    font-optical-sizing: auto;
+    color: #fff;
+    overflow: hidden;
+    padding: 0;
+}
+
+canvas {
+    display: block;
+    vertical-align: middle;
+}
+
+/* tsParticles Styling */
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzgtMDkta255OWZoM2IuanBn.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+.navigate-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    /* Default color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 5;
+}
+
+.navigate-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    /* Default color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 5;
+}
+
+a:hover {
+    color: #00FF9D;
+    /* Hover effect */
+}
+
+a:hover i {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+.navigate-crown {
+    position: absolute;
+    top: 10%;
+    /* Distance from bottom */
+    right: 10%;
+    /* Distance from right */
+    font-size: 2rem;
+    text-decoration: none;
+    background: gold;
+    padding: 12px 16px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    color: black;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+}
+
+.navigate-crown i {
+    color: black;
+    /* Ensures icon is visible */
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    /* Position tooltip above the button */
+    right: 50%;
+    transform: translateX(50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Show tooltip on hover */
+.navigate-crown:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(50%) translateY(-5px);
+}
+
+.navigate-crown:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+}
+
+/* ===================================
+   Leaderboard Styles
+=================================== */
+
+/* Leaderboard Container */
+.leaderboard-container {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 30%;
+    height: calc(100vh - 15%);
+    /* Dynamically adjusts height within viewport */
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    /* Allow vertical scrolling */
+    overflow-x: hidden;
+    /* Hide horizontal scroll */
+    z-index: 10;
+
+    /* Hide the scrollbar */
+    -ms-overflow-style: none;
+    /* For Internet Explorer */
+    scrollbar-width: none;
+    /* For Firefox */
+}
+
+.leaderboard-container::-webkit-scrollbar {
+    display: none;
+    /* For WebKit browsers (Chrome, Safari, etc.) */
+}
+
+/* Leaderboard Content */
+.leaderboard-content {
+    position: relative;
+    /* Establish positioning context for rows */
+}
+
+/* Leaderboard Header */
+.leaderboard-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle divider */
+    padding-bottom: 1rem;
+}
+
+.leaderboard-header h4 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: "Meta", sans-serif;
+    /* Custom font */
+    color: #fff;
+    /* Bright text for heading */
+}
+
+.season-badge {
+    display: inline-block;
+    background: rgba(255, 193, 7, 0.2);
+    /* Subtle yellow background */
+    color: #FFC107;
+    /* Bright yellow text */
+    padding: 0.3rem 0.8rem;
+    /* Padding */
+    border-radius: 25px;
+    /* Rounded corners */
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    /* Uppercase text */
+    white-space: nowrap;
+    /* Prevent wrapping */
+    width: 40%;
+    margin-top: 5px;
+}
+
+/* Leaderboard Header Row */
+.leaderboard-header-row {
+    display: flex;
+    /* Horizontal alignment */
+    width: 100%;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    /* Light text */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Divider */
+    box-sizing: border-box;
+    height: 3rem;
+    /* Fixed header height */
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Orbitron", sans-serif;
+    /* Center vertically */
+}
+
+/* Leaderboard Rows */
+.leaderboard-row {
+    display: flex;
+    /* Horizontal alignment */
+    width: 100%;
+    position: absolute;
+    /* Required for dynamic positioning */
+    height: 3rem;
+    padding-left: 0.5rem;
+    align-items: center;
+    box-sizing: border-box;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease;
+    /* Smooth animations */
+}
+
+/* Alternate Row Highlighting */
+.leaderboard-row:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.1);
+    /* Odd rows */
+}
+
+.leaderboard-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+    /* Even rows */
+}
+
+
+/* Glowing Circles */
+.glowing-circle {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    text-align: center;
+    /* Center text horizontally */
+    line-height: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+.first-place {
+    background: gold;
+    box-shadow: 0 0 10px gold;
+}
+
+.second-place {
+    background: silver;
+    box-shadow: 0 0 10px silver;
+}
+
+.third-place {
+    background: #cd7f32;
+    box-shadow: 0 0 10px #cd7f32;
+}
+
+.container main {
+    transition: all 0.5s;
+    -webkit-text-stroke: 4px #d6f4f4;
+    font-variation-settings: "wght" 900, "ital" 1;
+    font-size: 3rem;
+    /* Adjust size as needed */
+    text-align: center;
+    color: transparent;
+    font-family: "Meta", sans-serif;
+    text-shadow: 5px 5px 0px #07bccc, 10px 10px 0px #e601c0,
+        15px 15px 0px #e9019a, 20px 20px 0px #f40468,
+        30px 30px 5px #482896;
+    /* Closer shadows */
+    margin: 20px 0;
+    /* Optional spacing */
+}
+
+.container main.dynamic {
+    font-variation-settings: "wght" 100, "ital" 0;
+    /* Change weight and italic dynamically */
+    text-shadow: none;
+    /* Remove shadows dynamically */
+}
+
+
+/* Carousel Styling */
+.container {
+    position: relative;
+    z-index: 1;
+    /* Ensure it appears above tsParticles */
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+/* Instagram Section */
+/* Instagram Article Styling */
+.instagram {
+    max-width: 420px;
+    width: 60vh;
+    margin: 20px auto;
+    background: rgba(34, 34, 34, 0.4);
+    /* Translucent effect */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Keeps images inside the box */
+    z-index: 2;
+    /* Ensures proper layering */
+    position: relative;
+}
+
+/* Header Styling */
+.instagram__header {
+    padding: 12px 12px 0 12px;
+    display: flex;
+    align-items: center;
+}
+
+.instagram__header figure {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the middle */
+    gap: 10px;
+    /* Add space between image and caption */
+}
+
+.instagram__header img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Media Section Styling (Carousel Container) */
+.instagram__media {
+    /* position: relative; */
+    height: 50vh;
+    /* Fixed height for the container */
+    width: 100%;
+    /* Make it responsive */
+    overflow: hidden;
+    /* Prevent overflow of images */
+    background-color: #ffffff;
+    /* Optional background color */
+    /* display: flex;
+    align-items: center;
+    /* Center content vertically */
+    /* justify-content: center;
+    Center content horizontally */
+}
+
+/* Carousel Row */
+.img-carousel {
+    display: flex;
+    /* Align images horizontally */
+    transition: transform 0.5s ease-in-out;
+    /* Smooth transition for swiping */
+    position: relative;
+}
+
+/* Carousel Images */
+.img-carousel img {
+    /* flex: 0 0 100%; */
+    /* Each image takes 100% of the container width */
+    /* max-height: 100%; */
+    width: 100%;
+    height: 100%;
+    /* Scale to fit within the container */
+    object-fit: contain;
+    /* Ensure full image is visible without cropping */
+    display: block;
+    /* Prevent inline spacing issues */
+    border-radius: 8px;
+    /* Optional rounded corners */
+    background: rgba(255, 252, 252, 0.1);
+    /* Subtle background behind images */
+}
+
+/* Instagram Buttons */
+.instagram__buttons {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.likes-count {
+    font-family: "Orbitron", sans-serif;
+    /* Updated to match the Orbitron aesthetic */
+    font-size: 1.1rem;
+    /* Updated font size */
+    font-weight: 700;
+    /* Bold text */
+    color: #ffffff;
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing text effect */
+    padding: 0.5rem;
+    /* Button padding */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+}
+
+.instagram__icon--heart {
+    cursor: pointer;
+    fill: rgba(128, 128, 128, 0);
+    /* Default heart color */
+    transition: fill 0.3s ease;
+}
+
+.instagram__icon--heart.liked {
+    fill: rgb(255, 0, 81);
+    /* Highlighted color for liked memes */
+}
+
+.instagram__icon--heart {
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+    transition: transform 0.3s ease;
+    /* Smooth scaling on hover */
+}
+
+.instagram__icon--heart:hover {
+    transform: scale(1.2);
+    /* Slightly enlarge the heart on hover */
+}
+
+.instagram__icon {
+    width: 24px;
+    height: 24px;
+}
+
+.instagram__icon path {
+    stroke: #fff;
+    /* Sets the desired stroke color */
+}
+
+.instagram__icon--comment,
+.instagram__icon--message,
+.instagram__icon--saved {
+    display: none;
+}
+
+
+/* Styling for the flags count */
+.flags-count {
+    font-family: "Orbitron", sans-serif;
+    /* Match the aesthetic */
+    font-size: 1.1rem;
+    /* Font size similar to likes */
+    font-weight: 700;
+    /* Bold text */
+    color: #ffffff;
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing effect */
+    padding: 0.5rem;
+    /* Button padding */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+}
+
+/* Styling for the flag icon */
+.instagram__icon--flag {
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Smooth scaling & opacity on hover */
+    opacity: 0.8;
+    /* Slight transparency for subtle effect */
+}
+
+.instagram__icon--flag:hover {
+    transform: scale(1.2);
+    /* Slightly enlarge the flag on hover */
+    opacity: 1;
+    /* Fully opaque on hover */
+}
+
+/* Ensure flag image retains its original appearance across all browsers, even in dark mode */
+.instagram__icon--flag {
+    -webkit-filter: none !important;
+    /* Disable webkit-based filters (Safari/Chrome) */
+    filter: none !important;
+    /* Disable generic filters */
+    background-color: transparent;
+    /* Ensure background stays clear */
+    mix-blend-mode: normal;
+    /* Prevent blending into dark mode styles */
+    color-scheme: light;
+    /* Force light mode colors for the image */
+    -webkit-user-select: none;
+    /* Prevent accidental selections affecting rendering */
+    user-select: none;
+}
+
+/* Right Section Container */
+.right-container {
+    position: absolute;
+    top: 0;
+    /* Reset top position */
+    right: 0;
+    width: 30%;
+    /* height: 150px; */
+    overflow: hidden;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 10;
+    overflow-y: hidden;
+}
+
+
+/* Core Container Styles */
+.toggle-container {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background: rgba(34, 34, 34, 0.4); */
+    /* Semi-translucent background */
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+    /* border-radius: 75px; */
+    gap: 10px;
+    /* Adjust gap for more symmetric spacing */
+    position: relative;
+    padding: 1rem;
+}
+
+/* Text Styling */
+.toggle-text {
+    font-size: 1rem;
+    opacity: 0.4;
+    /* Inactive by default */
+    transition: opacity 0.3s ease, color 0.3s ease;
+    flex: 1;
+    /* Allow text to take equal space on both sides */
+    text-align: center;
+    /* Center-align the text */
+}
+
+.active-text {
+    opacity: 1;
+    color: #b1fefe;
+    font-size: 1.1rem;
+}
+
+/* Image Styling */
+.toggle-image {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+
+.typewriter-container h1 {
+    font-family: "Orbitron", sans-serif;
+    color: #00FF9D;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: left;
+    margin: 3rem 0 1rem 2rem;
+}
+
+/* Blinking Cursor */
+.typewriter::after {
+    content: "";
+    border-right: 2px solid #8bf;
+    animation: blink 0.5s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* Image Upload */
+:root {
+    --progress-bar-height: 15px;
+    --progress-bar-background: #e0e0e0;
+    --progress-bar-color: linear-gradient(to right, #f8b195, #f67280, #c06c84);
+}
+
+.upload-container {
+    /* Avoid conflicts with your existing "container" class */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    /* Adjust as needed */
+    height: 100%;
+    /* Adjust as needed */
+    padding: 3rem;
+}
+
+.upload-btn {
+    font-family: "Orbitron", sans-serif;
+    /* Updated to match the Orbitron aesthetic */
+    font-size: 1.1rem;
+    /* Updated font size */
+    font-weight: 700;
+    /* Bold text */
+    color: #ffffff;
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing text effect */
+
+    background: rgba(34, 34, 34, 0.4);
+    /* Translucent effect */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    /* Subtle border */
+    border-radius: 8px;
+    /* Rounded edges */
+    padding: 15px 30px;
+    /* Button padding */
+    cursor: pointer;
+    /* Pointer cursor */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+    /* Smooth hover and focus effects */
+}
+
+.upload-btn:hover {
+    background: rgba(34, 34, 34, 0.4);
+    /* Keep the same background color */
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    /* Enhanced shadow on hover */
+
+    /* Add a glowing border effect */
+    border: 2px solid rgba(0, 255, 157, 0.9);
+    /* Bright green border on hover */
+    text-shadow: 0 0 15px rgba(0, 255, 157, 0.9);
+    /* Enhance glowing text on hover */
+}
+
+.upload-btn:active {
+    background: rgba(34, 34, 34, 0.4);
+    /* Maintain background color */
+    transform: translateY(0);
+    /* Reset lift effect on click */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    /* Reduced shadow for active state */
+    border: 2px solid rgba(0, 255, 157, 0.7);
+    /* Slightly dim glowing border on active */
+}
+
+
+
+
+
+.file-input {
+    display: none;
+}
+
+.upload-error {
+    color: #cfcfcf;
+    margin-top: 10px;
+    display: none;
+}
+
+.upload-progress {
+    width: 400px;
+    display: none;
+    position: relative;
+    margin-top: 20px;
+}
+
+.upload-progress-bar {
+    width: 0;
+    height: var(--progress-bar-height);
+    background: var(--progress-bar-color);
+    border-radius: 10px;
+}
+
+.upload-progress-bar-background {
+    width: 80%;
+    height: var(--progress-bar-height);
+    background-color: var(--progress-bar-background);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.upload-jumping-image {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -50px;
+    left: 0;
+    display: none;
+}
+
+.upload-jumping-image img {
+    width: 100%;
+    height: auto;
+}
+
+.upload-completion-image {
+    width: 70px;
+    height: 70px;
+    display: none;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Default Layout for Desktops (Three-Column Structure) */
+.container {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+    justify-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    /* Prevent excessive stretching on large screens */
+    margin: 0 auto;
+    /* Center the grid horizontally */
+    padding-top: 10px;
+    /* Adjust as needed */
+}
+
+/* Heading (Desktop View) */
+.container main {
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    text-align: center;
+    margin-top: -50px;
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: center;
+    max-width: 70%;
+}
+
+/* Instagram Section */
+.instagram {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: center;
+    max-width: 90%;
+}
+
+/* Right Container */
+.right-container {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: center;
+    max-width: 90%;
+}
