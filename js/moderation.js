@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             try {
                 const memeDoc = doc(db, "memes", memeId);
                 await updateDoc(memeDoc, { isApproved });
-                alert(`Meme ${isApproved ? "approved" : "approval revoked"} successfully!`);
+                // alert(`Meme ${isApproved ? "approved" : "approval revoked"} successfully!`);
             } catch (error) {
                 console.error("Error toggling meme approval status:", error);
                 alert("Failed to update meme status. Please try again.");
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             try {
                 const memeDoc = doc(db, "memes", memeId);
                 await updateDoc(memeDoc, { moderatorBonus });
-                alert(`Moderator bonus ${moderatorBonus ? "enabled" : "disabled"} successfully!`);
+                // alert(`Moderator bonus ${moderatorBonus ? "enabled" : "disabled"} successfully!`);
             } catch (error) {
                 console.error("Error updating bonus status:", error);
                 alert("Failed to update moderator bonus. Please try again.");
