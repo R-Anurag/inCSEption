@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const basePoints = 5; // Points for submission
                 const likePoints = meme.likesCount || 0; // Points from likes
                 const commentPoints = (meme.commentsCount || 0) * 2; // Points from comments
-                const moderatorPoints = meme.moderatorBonus ? 10 : 0; // Moderator bonus
+                // const moderatorPoints = meme.moderatorBonus ? 10 : 0; // Moderator bonus
 
                 return total + basePoints + likePoints + commentPoints + moderatorPoints;
             }, 0);
