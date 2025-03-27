@@ -4,6 +4,8 @@ body {
     font-family: "Gelasio", serif;
     font-optical-sizing: auto;
     color: #fff;
+    /* overflow: hidden; */
+    padding: 0;
 }
 
 canvas {
@@ -59,6 +61,65 @@ a:hover {
 a:hover i {
     transform: scale(1.2);
     transition: transform 0.3s ease;
+}
+
+.navigate-crown {
+    position: absolute;
+    top: 10%;
+    /* Distance from bottom */
+    right: 10%;
+    /* Distance from right */
+    font-size: 2rem;
+    text-decoration: none;
+    background: gold;
+    padding: 12px 16px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    color: black;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+}
+
+.navigate-crown i {
+    color: black;
+    /* Ensures icon is visible */
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    /* Position tooltip above the button */
+    right: 50%;
+    transform: translateX(50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Show tooltip on hover */
+.navigate-crown:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(50%) translateY(-5px);
+}
+
+.navigate-crown:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 1);
 }
 
 /* ===================================
@@ -381,19 +442,6 @@ a:hover i {
     /* Slightly enlarge the heart on hover */
 }
 
-.heart-pop {
-    width: 24px;
-    /* Size of the heart */
-    height: 24px;
-    /* Size of the heart */
-    opacity: 1;
-    /* Start fully visible */
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-    /* Smooth animation */
-    pointer-events: none;
-    /* Prevent interference with clicks */
-}
-
 .instagram__icon {
     width: 24px;
     height: 24px;
@@ -411,6 +459,59 @@ a:hover i {
 }
 
 
+/* Styling for the flags count */
+.flags-count {
+    font-family: "Orbitron", sans-serif;
+    /* Match the aesthetic */
+    font-size: 1.1rem;
+    /* Font size similar to likes */
+    font-weight: 700;
+    /* Bold text */
+    color: #ffffff;
+    /* White color for text */
+    text-align: center;
+    /* Align text in the center */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    /* Glowing effect */
+    padding: 0.5rem;
+    /* Button padding */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+}
+
+/* Styling for the flag icon */
+.instagram__icon--flag {
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Smooth scaling & opacity on hover */
+    opacity: 0.8;
+    /* Slight transparency for subtle effect */
+}
+
+.instagram__icon--flag:hover {
+    transform: scale(1.2);
+    /* Slightly enlarge the flag on hover */
+    opacity: 1;
+    /* Fully opaque on hover */
+}
+
+/* Ensure flag image retains its original appearance across all browsers, even in dark mode */
+.instagram__icon--flag {
+    -webkit-filter: none !important;
+    /* Disable webkit-based filters (Safari/Chrome) */
+    filter: none !important;
+    /* Disable generic filters */
+    background-color: transparent;
+    /* Ensure background stays clear */
+    mix-blend-mode: normal;
+    /* Prevent blending into dark mode styles */
+    color-scheme: light;
+    /* Force light mode colors for the image */
+    -webkit-user-select: none;
+    /* Prevent accidental selections affecting rendering */
+    user-select: none;
+}
 
 /* Right Section Container */
 .right-container {
@@ -636,4 +737,91 @@ a:hover i {
     border-radius: 50%;
     border: 5px solid white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Default Layout for Desktops (Three-Column Structure) */
+.container {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+    justify-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    /* Prevent excessive stretching on large screens */
+    margin: 0 auto;
+    /* Center the grid horizontally */
+    padding-top: 10px;
+    /* Adjust as needed */
+}
+
+/* Heading (Desktop View) */
+.container main {
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: center;
+    max-width: 70%;
+}
+
+/* Instagram Section */
+.instagram {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: center;
+    max-width: 90%;
+}
+
+/* Right Container */
+.right-container {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: center;
+    max-width: 90%;
+}
+
+/* Responsive Layout for Phones (Column Structure) */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .container main {
+        order: 1;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .instagram {
+        order: 2;
+        width: 100%;
+    }
+
+    .right-container {
+        order: 3;
+        width: 100%;
+    }
+
+    .leaderboard-container {
+        order: 4;
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
