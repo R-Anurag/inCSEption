@@ -524,7 +524,6 @@ toggleImage.addEventListener("click", () => {
     const leaderboardContainer = document.querySelector(".leaderboard-container");
 
     function alignContainers() {
-    if (window.innerWidth > 768) {
         const instagramRect = instagram.getBoundingClientRect();
         if (rightContainer) {
             rightContainer.style.top = `${instagramRect.top + window.scrollY}px`;
@@ -532,11 +531,6 @@ toggleImage.addEventListener("click", () => {
         if (leaderboardContainer) {
             leaderboardContainer.style.top = `${instagramRect.top + window.scrollY - 90}px`;
         }
-    } else {
-        // Reset styles for phones (relying on CSS grid layout)
-        if (rightContainer) rightContainer.style.top = "unset";
-        if (leaderboardContainer) leaderboardContainer.style.top = "unset";
-    }
 }
 
 alignContainers();
