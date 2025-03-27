@@ -238,19 +238,19 @@ canvas {
 }
 
 .card:nth-of-type(1) .front {
-    background-image: url("../assets/images/frontSide.png");
+    background-image: url("../assets/images/flaggedWinner.png");
 }
 
 .card:nth-of-type(2) .front {
-    background-image: url("../assets/images/frontSide.png");
+    background-image: url("../assets/images/fbiWinner.png");
 }
 
 .card:nth-of-type(3) .front {
-    background-image: url("../assets/images/frontSide.png");
+    background-image: url("../assets/images/dadestWinner.png");
 }
 
 .card:nth-of-type(4) .front {
-    background-image: url("../assets/images/frontSide.png");
+    background-image: url("../assets/images/leaderboardWinner.png");
 }
 
 .card:nth-of-type(1) .back {
